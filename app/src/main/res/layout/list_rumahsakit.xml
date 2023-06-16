@@ -22,12 +22,21 @@
             android:visibility="gone"/>
 
 
+        <ImageView
+            android:id="@+id/iv_foto"
+            android:layout_width="wrap_content"
+            android:layout_height="431dp"
+            android:clipToOutline="true"
+            android:scaleType="centerCrop"
+            android:src="@drawable/contoh" />
+
         <TextView
             android:id="@+id/tv_foto"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Foto Rumah Sakit"
-            android:textSize="17sp"/>
+            android:visibility="gone"
+            />
+
 
         <TextView
             android:id="@+id/tv_deskripsi"
@@ -49,6 +58,42 @@
             android:layout_height="wrap_content"
             android:text="Koordinat Rumah Sakit"
             android:textSize="17sp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/iv_foto"
+        android:layout_weight="3"
+        android:orientation="horizontal"
+
+        >
+
+        <Button
+            android:id="@+id/btn_ubah"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="2dp"
+            android:layout_weight="1"
+            android:text="Ubah" />
+
+        <Button
+            android:id="@+id/btn_hapus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2dp"
+            android:layout_weight="1"
+            android:text="Hapus" />
+
+        <Button
+            android:id="@+id/btn_detail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2dp"
+            android:layout_weight="1"
+            android:text="Detail" />
+
+    </LinearLayout>
+
 
     </LinearLayout>
 

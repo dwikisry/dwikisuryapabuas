@@ -116,7 +116,7 @@ public class AdapterRumahSakit extends RecyclerView.Adapter<AdapterRumahSakit.VH
                     String pesan = response.body().getPesan();
 
                     Toast.makeText(ctx, "Kode : " + kode + "Pesan : " + pesan, Toast.LENGTH_SHORT).show();
-                    ((MainActivity)ctx).retrieveRumahsakit();
+                    ((MainActivity)ctx).retriveRumahsakit();
 
                 }
 

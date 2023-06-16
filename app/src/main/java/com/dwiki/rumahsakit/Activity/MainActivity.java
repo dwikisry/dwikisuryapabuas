@@ -26,9 +26,9 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
-    private RecyclerView rvrumahsakit;
-    private ProgressBar pbrumahsakit;
-    private FloatingActionButton fabtambah;
+    private RecyclerView rvRumahsakit;
+    private FloatingActionButton fabTambah;
+    private ProgressBar pbRumahsakit;
     private RecyclerView.Adapter adRumahsakit;
     private RecyclerView.LayoutManager lmRumahsakit;
     private List<ModelRumahSakit> listRumahsakit = new ArrayList<>();
@@ -38,52 +38,51 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        rvrumahsakit = findViewById(R.id.rv_rumahsakit);
-        pbrumahsakit = findViewById(R.id.pb_rumahsakit);
-        fabtambah = findViewById(R.id.fab_tambah);
+        rvRumahsakit = findViewById(R.id.rv_rumahsakit);
+        fabTambah = findViewById(R.id.fab_tambah);
+        pbRumahsakit = findViewById(R.id.pb_rumahsakit);
 
-        lmRumahsakit = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
-        rvrumahsakit.setLayoutManager(lmRumahsakit);
-
-        fabtambah.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, TambahActivity.class));
-            }
-        });
+        lmRumahsakit = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
+        rvRumahsakit.setLayoutManager(lmRumahsakit);
     }
 
-    public void retrieveRumahsakit(){
-        pbrumahsakit.setVisibility(View.VISIBLE);
+    @Override
+    protected void onResume() {
+        super.onResume();
+        retriveRumahsakit();
+    }
+
+    public void retriveRumahsakit(){
+        pbRumahsakit.setVisibility(View.VISIBLE);
 
         APIRequestData API = RetroServer.konekRetrofit().create(APIRequestData.class);
         Call<ModelResponse> proses = API.ardRetrieve();
-
         proses.enqueue(new Callback<ModelResponse>() {
             @Override
             public void onResponse(Call<ModelResponse> call, Response<ModelResponse> response) {
                 String kode = response.body().getKode();
                 String pesan = response.body().getPesan();
                 listRumahsakit = response.body().getData();
-
                 adRumahsakit = new AdapterRumahSakit(MainActivity.this, listRumahsakit);
-                rvrumahsakit.setAdapter(adRumahsakit);
+                rvRumahsakit.setAdapter(adRumahsakit);
                 adRumahsakit.notifyDataSetChanged();
+                pbRumahsakit.setVisibility(View.GONE);
 
-                pbrumahsakit.setVisibility(View.GONE);
+                fabTambah.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        startActivity(new Intent(MainActivity.this, TambahActivity.class));
+                    }
+                });
             }
+
 
             @Override
             public void onFailure(Call<ModelResponse> call, Throwable t) {
-                Toast.makeText(MainActivity.this, "Error : Gagal Menghubungi Server", Toast.LENGTH_SHORT).show();
-                pbrumahsakit.setVisibility(View.GONE);
+                Toast.makeText(MainActivity.this, "Gagal terhubung server", Toast.LENGTH_SHORT).show();
+                pbRumahsakit.setVisibility(View.GONE);
             }
-        });
-    }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        retrieveRumahsakit();
+        });
     }
 }
