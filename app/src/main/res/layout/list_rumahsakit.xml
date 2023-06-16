@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="6dp"
+    android:elevation="32dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="6dp">
+
+
+        <TextView
+            android:id="@+id/tv_nama"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nama Rumah Sakit"
+            android:textStyle="bold"
+            android:textSize="17sp"
+            android:visibility="gone"/>
+
+
+        <TextView
+            android:id="@+id/tv_foto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Foto Rumah Sakit"
+            android:textSize="17sp"/>
+
+        <TextView
+            android:id="@+id/tv_deskripsi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Deskripsi Rumah Sakit"
+            android:textSize="17sp"/>
+
+        <TextView
+            android:id="@+id/tv_alamat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Alamat Rumah Sakit"
+            android:textSize="17sp"/>
+
+        <TextView
+            android:id="@+id/tv_koordinat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Koordinat Rumah Sakit"
+            android:textSize="17sp"/>
+
+    </LinearLayout>
+
+
+
+</androidx.cardview.widget.CardView>
